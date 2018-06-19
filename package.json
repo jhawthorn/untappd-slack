@@ -1,0 +1,11 @@
+{
+  "name": "untappd-slack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "author": "John Hawthorn",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@slack/client": "^4.3.1"
+  }
+}
