@@ -7,7 +7,6 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@slack/client": "^4.3.1",
-    "aws-sdk": "^2.259.1",
     "node-untappd": "^0.4.1"
   }
 }
