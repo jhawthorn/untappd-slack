@@ -11,6 +11,11 @@ service: untappd-slack
 provider:
   name: aws
   runtime: nodejs6.10
+  environment:
+    SLACK_TOKEN: ${env:SLACK_TOKEN}
+    SLACK_CONVERSATION_ID: ${env:SLACK_CONVERSATION_ID}
+    UNTAPPD_CLIENTID: ${env:UNTAPPD_CLIENTID}
+    UNTAPPD_SECRET: ${env:UNTAPPD_SECRET}
 
 # The `functions` block defines what code to deploy
 functions:
@@ -22,3 +27,7 @@ functions:
           path: hello-world
           method: get
           cors: true
+  pollForBeers:
+    handler: handler.pollForBeers
+    events:
+      - schedule: rate(2 minutes)
