@@ -5,9 +5,9 @@ const SLACK_TOKEN = process.env.SLACK_TOKEN;
 const web = new WebClient(SLACK_TOKEN);
 const conversationId = process.env.SLACK_CONVERSATION_ID;
 
-const AWS = require('aws-sdk');
+const DynamoDB = require('aws-sdk/clients/dynamodb');
 const USERS_TABLE = process.env.USERS_TABLE;
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
+const dynamoDb = new DynamoDB.DocumentClient();
 
 const UntappdClient = require('node-untappd');
 const UNTAPPD_CLIENTID = process.env.UNTAPPD_CLIENTID;
