@@ -11,7 +11,20 @@ service: untappd-slack
 provider:
   name: aws
   runtime: nodejs6.10
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - { "Fn::GetAtt": ["UsersDynamoDBTable", "Arn" ] }
   environment:
+    USERS_TABLE: { "Ref": "UsersDynamoDBTable" }
     SLACK_TOKEN: ${env:SLACK_TOKEN}
     SLACK_CONVERSATION_ID: ${env:SLACK_CONVERSATION_ID}
     UNTAPPD_CLIENTID: ${env:UNTAPPD_CLIENTID}
@@ -31,3 +44,20 @@ functions:
     handler: handler.pollForBeers
     events:
       - schedule: rate(2 minutes)
+
+resources:
+  Resources:
+    UsersDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: name
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: name
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

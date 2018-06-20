@@ -7,6 +7,9 @@ const SLACK_TOKEN = process.env.SLACK_TOKEN;
 const web = new WebClient(SLACK_TOKEN);
 const conversationId = process.env.SLACK_CONVERSATION_ID;
 
+const NAMES_TABLE = process.env.NAMES_TABLE;
+const dynamoDb = new AWS.DynamoDB.DocumentClient();
+
 const postMessageToSlack = (message) => {
   web.chat.postMessage({ channel: conversationId, text: message })
     .then((res) => {
