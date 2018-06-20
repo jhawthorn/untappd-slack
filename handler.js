@@ -1,5 +1,7 @@
 'use strict';
 
+const AWS = require('aws-sdk');
+
 const { WebClient } = require('@slack/client');
 
 const SLACK_TOKEN = process.env.SLACK_TOKEN;
@@ -7,7 +9,7 @@ const SLACK_TOKEN = process.env.SLACK_TOKEN;
 const web = new WebClient(SLACK_TOKEN);
 const conversationId = process.env.SLACK_CONVERSATION_ID;
 
-const NAMES_TABLE = process.env.NAMES_TABLE;
+const USERS_TABLE = process.env.USERS_TABLE;
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 const postMessageToSlack = (message) => {
@@ -20,5 +22,14 @@ const postMessageToSlack = (message) => {
 };
 
 module.exports.pollForBeers = (event, context) => {
-  postMessageToSlack("jhawthorn is drinking the beer");
+  dynamoDb.scan({ TableName: USERS_TABLE }, function(err, data){
+    if (err) {
+      console.log(err, err.stack);
+    } else {
+      data.Items.forEach((userRecord) => {
+        const { untappd_username, slack_id } = userRecord;
+        postMessageToSlack(`Is ${untappd_username} (${slack_id}) drinking beer?`);
+      });
+    }
+  });
 }
