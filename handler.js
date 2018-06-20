@@ -105,11 +105,16 @@ const formatMessage = (checkin, withName=true) => {
 function checkUser({ name, untappd_username, slack_id, untappd_max_id }) {
 
   untappd.userActivityFeed(function(err, obj){
-    let { pagination: { max_id }, checkins: { items } } = obj.response;
+    let { checkins: { items } } = obj.response;
+
+    let max_id = 0;
 
     items.forEach((checkin) => {
       if (untappd_max_id != null && checkin.checkin_id <= untappd_max_id) {
         return;
+      }
+      if (checkin.checkin_id > max_id) {
+        max_id = checkin.checkin_id;
       }
 
       const message = formatMessage(checkin);
