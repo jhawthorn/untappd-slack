@@ -103,7 +103,6 @@ const formatMessage = (checkin, withName=true) => {
 }
 
 function checkUser({ name, untappd_username, slack_id, untappd_max_id }) {
-
   untappd.userActivityFeed(function(err, obj){
     let { checkins: { items } } = obj.response;
 
