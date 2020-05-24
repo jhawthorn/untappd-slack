@@ -96,7 +96,7 @@ const formatMessage = (checkin, withName=true) => {
   const venue = checkin.venue.venue_name ? `at ${checkin.venue.venue_name}` : ""
 
   if (withName) {
-    return `:beer: *${user_name}* ${action} *${beer_name}* from _${brewery_name}_ ${rating_phrase} ${venue}`
+    return `:beer: *${user_name}* ${action} *${beer_name}* from _${brewery_name}_ ${[rating_phrase, venue].filter(e => e).join(" ")}`
   } else {
     return `:beer: *${beer_name}* from _${brewery_name}_ ${rating_phrase} ${venue}`
   }
