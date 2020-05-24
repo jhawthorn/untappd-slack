@@ -6,7 +6,7 @@
   "author": "John Hawthorn",
   "license": "UNLICENSED",
   "dependencies": {
-    "@slack/client": "^4.12.0",
+    "@slack/web-api": "^5.0.2",
     "node-untappd": "^0.4.1"
   }
 }

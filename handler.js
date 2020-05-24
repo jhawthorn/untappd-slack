@@ -1,6 +1,6 @@
 'use strict';
 
-const { WebClient } = require('@slack/client');
+const { WebClient } = require('@slack/web-api');
 const SLACK_TOKEN = process.env.SLACK_TOKEN;
 const web = new WebClient(SLACK_TOKEN);
 const conversationId = process.env.SLACK_CONVERSATION_ID;
