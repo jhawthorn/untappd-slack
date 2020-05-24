@@ -43,6 +43,11 @@ function checkUser({ name, untappd_username, slack_id, untappd_max_id }) {
 
       const message = formatMessage(checkin);
 
+      let image = checkin.beer.beer_label;
+      if (checkin.media.count > 0) {
+        image = checkin.media.items[0].photo.photo_img_sm;
+      }
+
       const blocks = [
         {
           "type": "section",
@@ -52,7 +57,7 @@ function checkUser({ name, untappd_username, slack_id, untappd_max_id }) {
           },
           "accessory": {
             "type": "image",
-            "image_url": checkin.beer.beer_label,
+            "image_url": image,
             "alt_text": checkin.beer.beer_name
           }
         }
