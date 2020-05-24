@@ -71,16 +71,16 @@ const actionNameFor = (rating) => {
 
 module.exports.formatMessage = (checkin, withName = true) => {
     const beer_name = checkin.beer.beer_name
-    const user_name = `${checkin.user.first_name} ${checkin.user.last_name.charAt(0)}`
     const brewery_name = checkin.brewery.brewery_name
     const rating_score = checkin.rating_score
     const rating_phrase = rating_score > 0 ? `and rated it *${rating_score}/5*` : ""
-    const action = actionNameFor(rating_score)
     const venue = checkin.venue.venue_name ? `at ${checkin.venue.venue_name}` : ""
 
     if (withName) {
+        const user_name = `${checkin.user.first_name} ${checkin.user.last_name.charAt(0)}`
+        const action = actionNameFor(rating_score)
         return `:beer: *${user_name}* ${action} *${beer_name}* from _${brewery_name}_ ${[rating_phrase, venue].filter(e => e).join(" ")}`
     } else {
-        return `:beer: *${beer_name}* from _${brewery_name}_ ${rating_phrase} ${venue}`
+        return `:beer: *${beer_name}* from _${brewery_name}_ ${[rating_phrase, venue].filter(e => e).join(" ")}`
     }
 }
