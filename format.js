@@ -1,57 +1,66 @@
 
+const sillyActions = [
+    "acquired through legitimate means one",
+    "allegedly consumed a",
+    "has been spotted drinking",
+    "gargled some",
+    "under laboratory conditions drank a",
+    "had some drinky. Specifically,",
+    "believes all problems can be solved by",
+    "beer'd",
+    "cleansed their palette with",
+    "considered whether it was possible to homebrew",
+    "drank through a krazy straw a",
+    "claims to have had a"
+];
+
+const badActions = [
+    "choked down a",
+    "managed to finish a",
+    "reluctantly tried a",
+    "kept down a",
+    "shouldn't have had a",
+    "later regretted having a",
+    "was revolted by a",
+    "hates"
+];
+
+const normalActions = [
+    "drank a",
+    "had a",
+    "slammed a",
+    "chugged a",
+    "downed a",
+    "imbibed a",
+    "hammed a",
+    "slurped a",
+    "consumed a",
+    "gulped a",
+    "quaffed a",
+    "sampled a"
+
+];
+
+const goodActions = [
+    "thoroughly enjoyed a",
+    "quenched their thirst with a",
+    "drowned themselves in",
+    "loves"
+];
+
 const availableActionNames = (rating) => {
     if (Math.random() < 0.10) {
         // silly
-        return [
-            "acquired through legitimate means one",
-            "allegedly consumed a",
-            "has been spotted drinking",
-            "gargled some",
-            "under laboratory conditions drank a",
-            "had some drinky. Specifically,",
-            "believes all problems can be solved by",
-            "beer'd",
-            "cleansed their palette with",
-            "considered whether it was possible to homebrew",
-            "drank through a krazy straw a",
-            "claims to have had a"
-        ];
+        return sillyActions;
     } else if (rating && rating <= 2.0) {
         // bad
-        return [
-            "choked down a",
-            "managed to finish a",
-            "reluctantly tried a",
-            "kept down a",
-            "shouldn't have had a",
-            "later regretted having a",
-            "was revolted by a",
-            "hates"
-        ];
+        return badActions;
     } else if (!rating || rating <= 4.0) {
         // normal
-        return [
-            "drank a",
-            "had a",
-            "slammed a",
-            "chugged a",
-            "downed a",
-            "imbibed a",
-            "hammed a",
-            "slurped a",
-            "consumed a",
-            "gulped a",
-            "quaffed a",
-            "sampled a"
-        ];
+        return normalActions;
     } else {
         // good
-        return [
-            "thoroughly enjoyed a",
-            "quenched their thirst with a",
-            "drowned themselves in",
-            "loves"
-        ]
+        return goodActions;
     }
 };
 
