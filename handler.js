@@ -16,8 +16,8 @@ const untappd = new UntappdClient(false);
 untappd.setClientId(UNTAPPD_CLIENTID);
 untappd.setClientSecret(UNTAPPD_SECRET);
 
-const postMessageToSlack = (message) => {
-  web.chat.postMessage({ channel: conversationId, text: message })
+const postMessageToSlack = (message, blocks) => {
+  web.chat.postMessage({ channel: conversationId, text: message, blocks: blocks })
     .then((res) => {
       // `res` contains information about the posted message
       console.log('Message sent: ', res.ts);
@@ -42,7 +42,23 @@ function checkUser({ name, untappd_username, slack_id, untappd_max_id }) {
       }
 
       const message = formatMessage(checkin);
-      postMessageToSlack(message);
+
+      const blocks = [
+        {
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": message,
+          },
+          "accessory": {
+            "type": "image",
+            "image_url": checkin.beer.beer_label,
+            "alt_text": checkin.beer.beer_name
+          }
+        }
+      ];
+
+      postMessageToSlack(message, blocks);
     });
 
     if (untappd_max_id == null || max_id > untappd_max_id) {
