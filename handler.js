@@ -48,12 +48,14 @@ function checkUser({ name, untappd_username, slack_id, untappd_max_id }) {
         image = checkin.media.items[0].photo.photo_img_sm;
       }
 
+      const checkin_url = `https://untappd.com/user/${checkin.user.user_name}/checkin/${checkin.checkin_id}`;
+      const beer_url = `https://untappd.com/b/${checkin.beer.slug}/${checkin.beer.bid}`;
       const blocks = [
         {
           "type": "section",
           "text": {
             "type": "mrkdwn",
-            "text": message,
+            "text": `${message}\n\n<${checkin_url}|View Check-in> | <${beer_url}|View Beer>`,
           },
           "accessory": {
             "type": "image",
