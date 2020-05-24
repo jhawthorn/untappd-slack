@@ -7,6 +7,10 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@slack/web-api": "^5.0.2",
+    "jest": "^26.0.1",
     "node-untappd": "^0.4.1"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
