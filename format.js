@@ -1,26 +1,21 @@
 
 const sillyActions = [
-    "acquired through legitimate means one",
     "allegedly consumed a",
     "has been spotted drinking",
     "gargled some",
     "under laboratory conditions drank a",
     "had some drinky. Specifically,",
     "believes all problems can be solved by",
-    "beer'd",
     "cleansed their palette with",
-    "considered whether it was possible to homebrew",
     "drank through a krazy straw a",
-    "claims to have had a"
 ];
 
 const badActions = [
-    "choked down a",
     "managed to finish a",
     "reluctantly tried a",
     "kept down a",
     "shouldn't have had a",
-    "later regretted having a",
+    "regretted having a",
     "was revolted by a",
     "hates"
 ];
@@ -29,7 +24,6 @@ const normalActions = [
     "drank a",
     "had a",
     "slammed a",
-    "chugged a",
     "downed a",
     "imbibed a",
     "hammed a",
@@ -38,7 +32,6 @@ const normalActions = [
     "gulped a",
     "quaffed a",
     "sampled a"
-
 ];
 
 const goodActions = [
